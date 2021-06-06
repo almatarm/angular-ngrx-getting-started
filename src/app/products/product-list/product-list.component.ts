@@ -27,7 +27,7 @@ export class ProductListComponent implements OnInit {
 
   products$: Observable<Product[]>;
 
-  constructor(private store: Store<ProductState>, private productService: ProductService) { }
+  constructor(private store: Store<ProductState>) { }
 
   ngOnInit(): void {
     this.products$ = this.store.select(getProducts);
@@ -47,6 +47,6 @@ export class ProductListComponent implements OnInit {
   }
 
   productSelected(product: Product): void {
-    this.store.dispatch(ProductActions.setCurrentProduct({product}));
+    this.store.dispatch(ProductActions.setCurrentProduct({currentProductId: product.id}));
   }
 }
